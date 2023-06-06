@@ -27,7 +27,7 @@ let MAX_2 = 100;
 
 
 function setup() {
-  createCanvas(1920, 1080);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 360, 100, 100, 100);
   background(0);
   frameRate(10);
