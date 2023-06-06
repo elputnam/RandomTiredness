@@ -10,7 +10,7 @@ let x = 0;
 let y = 0;
 let r = 200;
 let c = 0;
-let i = 0.05;
+let i = 1;
 let k = 10;
 let MIN = 0;
 let MAX_1 = 400;
@@ -18,7 +18,7 @@ let inside = 0;
 let outside = 255;
 let deg = 0;
 let alp = 0;
-let grow = 0.002;
+let grow = 0.01;
 
 //glitter sky
 
