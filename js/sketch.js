@@ -25,9 +25,17 @@ let grow = 0.005;
 let drips = [];
 let MAX_2 = 100;
 
+//CCapture
+// var capture = false; // default is to not capture frames, can be changed with button in browser
+var capturer = new CCapture({
+  format:'webm', 
+  workersPath: 'js/',
+  framerate: 10
+});
+
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1920, 1080);
   colorMode(HSB, 360, 100, 100, 100);
   background(0);
   frameRate(10);
@@ -41,11 +49,11 @@ function setup() {
 
 function draw() {
   // background(0, 30);
-  
+  if (frameCount==1) capturer.start(); // start the animation capture
   background(0, 10);
 
-  moon();
-  starKnot();
+  // moon();
+  // starKnot();
 
   //glitter rain
   for (let i = 0; i < drips.length; i++) {
@@ -53,6 +61,12 @@ function draw() {
     drips[i].edges();
 		drips[i].show();
   }
+
+  capturer.capture(document.getElementById('defaultCanvas0'));  
+  if (frameCount==7200){
+    save_record();
+  }
+  print(frameCount);
 }
 
 class Drip {
@@ -230,4 +244,8 @@ function starKnot(){
   pop();
   pop();
   deg += grow;
+}
+
+function save_record() {
+  capturer.save();
 }
