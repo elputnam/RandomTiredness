@@ -18,7 +18,7 @@ let inside = 0;
 let outside = 255;
 let deg = 0;
 let alp = 0;
-let grow = 0.005;
+let grow = 0.001;
 
 //glitter sky
 
@@ -30,7 +30,7 @@ let MAX_2 = 100;
 var capturer = new CCapture({
   format:'webm', 
   workersPath: 'js/',
-  framerate: 10
+  framerate: 30
 });
 
 
@@ -38,7 +38,7 @@ function setup() {
   createCanvas(1920, 1080);
   colorMode(HSB, 360, 100, 100, 100);
   background(0);
-  frameRate(10);
+  frameRate(30);
   angleMode(RADIANS);
   
   
@@ -49,21 +49,21 @@ function setup() {
 
 function draw() {
   // background(0, 30);
-  if (frameCount==1) capturer.start(); // start the animation capture
+   if (frameCount==1) capturer.start(); // start the animation capture
   background(0, 10);
 
-  // moon();
+  moon();
   // starKnot();
 
   //glitter rain
-  for (let i = 0; i < drips.length; i++) {
-    drips[i].move();
-    drips[i].edges();
-		drips[i].show();
-  }
+  // for (let i = 0; i < drips.length; i++) {
+  //   drips[i].move();
+  //   drips[i].edges();
+	// 	drips[i].show();
+  // }
 
   capturer.capture(document.getElementById('defaultCanvas0'));  
-  if (frameCount==7200){
+  if (frameCount==10000){
     save_record();
   }
   print(frameCount);
@@ -163,7 +163,7 @@ function moon(){
   //stroke(255,0,255);
   line(phasex, 0, phasex, height);
 
-  let color1 = color(360, 100, 100, 0); //red
+  let color1 = color(h1, 100, 100, 0); //red
   let color2 = color(0,25,25,0); //gray
   let color3 = color(0,25,25,0); //blue
   let color4 = color(0,25,25,0); //green
@@ -205,7 +205,7 @@ function moon(){
   arc(phasex, phasey, widthPhase - 2, heightPhase + 1, PI/2, 3 * PI/2);
   fill(color4);
   arc(phasex, phasey, widthPhase - 2, heightPhase + 1, 3 * PI/2, PI/2);
-  h1 += 0.001;
+  h1 += 0.1;
 
   if (h1 >= 360){
     h1 = 0;
@@ -243,7 +243,7 @@ function starKnot(){
   star();
   pop();
   pop();
-  deg += grow;
+  deg += 0.01;
 }
 
 function save_record() {
